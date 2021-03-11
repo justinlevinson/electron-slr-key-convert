@@ -1,0 +1,22 @@
+{
+  "name": "slr-key-convert-app",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "bitcoinjs-lib": "^5.2.0",
+    "bs58": "^4.0.1",
+    "bs58check": "^2.1.2",
+    "crypto": "^1.0.1",
+    "ethereumjs-util": "^7.0.7",
+    "ethereumjs-wallet": "^1.0.1",
+    "keccak256": "^1.0.2"
+  },
+  "devDependencies": {
+    "electron": "^12.0.0"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "justin@solarcoin.org"
+}
