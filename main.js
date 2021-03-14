@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
+const {app, BrowserWindow, ipcMain, Tray} = require('electron')
 const path = require('path')
 
 let mainWindow;
@@ -11,13 +11,17 @@ function createWindow () {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true, 
       enableRemoteModule: false
-    }
+    },
+    icon: path.join(__dirname, '/Users/somebody/images/window.png'),
+    title: 'SolarCoin Key Converter'
   })
 
-  mainWindow.loadFile('index.html')
+  mainWindow.loadFile(path.join(__dirname,'index.html'))
 }
 
 app.whenReady().then(() => {
+  const appIcon = new Tray(path.join(__dirname, 'img/logo.png'))
+  app.dock.setIcon(path.join(__dirname, 'img/logo.png'))
   createWindow()
   
   app.on('activate', function () {
@@ -31,7 +35,7 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-const { runKeyConvert } = require('./keyconvert')
+const { runKeyConvert } = require(path.join(__dirname,'./keyconvert'))
 
 ipcMain.on('convert-key-request', (event, ...args) => {
   console.log('converting key')
